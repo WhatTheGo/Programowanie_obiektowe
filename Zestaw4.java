@@ -9,6 +9,9 @@ public class Zestaw4 {
         System.out.println("Zad2");
         double[] tab2 = generujZakres(6,1, 6);
         System.out.println(Arrays.toString(tab2));
+
+        System.out.println("Zad3");
+        wypiszTablice(tab1, 2, 3);
     }
 
 
@@ -34,8 +37,18 @@ public class Zestaw4 {
     }
 
     public static void wypiszTablice(double[] tab, int n, int m) {
+        int dlugosc = tab.length;
+        int k = 0;
         for (int i = 0; i < n; i++) {
-
+            for (int j = 0; j < m; j++) {
+                if(k < dlugosc){
+                    System.out.print(tab[j] + " ");
+                }else {
+                    System.out.print(" ");
+                }
+                k += 1;
+            }
+            System.out.print("\n");
         }
     }
 }
