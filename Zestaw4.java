@@ -3,11 +3,11 @@ import java.util.Arrays;
 public class Zestaw4 {
     public static void main(String[] args) {
         System.out.println("Zad1");
-        int[] tab1 = generujTablice(5, -10, 26);
+        int[] tab1 = generujTablice(5, 10, 26);
         System.out.println(Arrays.toString(tab1));
 
         System.out.println("Zad7");
-        double[] tab2 = generujZakres(4,1, 6);
+        double[] tab2 = generujZakres(4, 1, 6);
         System.out.println(Arrays.toString(tab2));
 
         System.out.println("Zad2");
@@ -22,13 +22,21 @@ public class Zestaw4 {
         System.out.println("Maksymalnych = " + ileMaksymalnych(tab1));
         System.out.println("Minimalnych = " + ileMinimalnych(tab1));
         System.out.println("Uniklanych = " + ileUnikalnych(tab1));
+
+        System.out.println("Zad4");
+        System.out.println("sumaDodatnich = " + sumaDodatnich(tab1));
+        System.out.println("sumaUjemnych = " + sumaUjemnych(tab1));
+        System.out.println("sumaOdwrotnosci = " + sumaOdwrotnosci(tab1));
+        System.out.println("sredniaArytmetyczna = " + sredniaArytmetyczna(tab1));
+        System.out.println("sredniaGeometryczna = " + sredniaGeometryczna(tab1));
+        System.out.println("sredniaHarmoniczna = " + sredniaHarmoniczna(tab1));
     }
 
 
     public static int[] generujTablice(int n, int minWartosc, int maxWartosc) {
         int[] tab1 = new int[n];
         for (int i = 0; i < n; i++) {
-            int random = (int) (Math.random() * (maxWartosc-minWartosc) + minWartosc);
+            int random = (int) (Math.random() * (maxWartosc - minWartosc) + minWartosc);
             tab1[i] = random;
         }
 
@@ -38,9 +46,9 @@ public class Zestaw4 {
     public static double[] generujZakres(int n, double minWartosc, double maxWartosc) {
         double[] tab1 = new double[n];
         tab1[0] = minWartosc;
-        double odstep = (maxWartosc - minWartosc)/(n-1);
+        double odstep = (maxWartosc - minWartosc) / (n - 1);
         for (int i = 1; i < n; i++) {
-            tab1[i] = tab1[i-1] + odstep;
+            tab1[i] = tab1[i - 1] + odstep;
         }
 
         return tab1;
@@ -51,9 +59,9 @@ public class Zestaw4 {
         int k = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if(k < dlugosc){
+                if (k < dlugosc) {
                     System.out.print(tab[k] + " ");
-                }else {
+                } else {
                     System.out.print(" ");
                 }
                 k++;
@@ -153,20 +161,68 @@ public class Zestaw4 {
         }
         return ile;
     }
-// nie działa ileUnikalnych
-    public static int ileUnikalnych(int[] tab) {
-        int ile = 0;
 
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab.length-1; j++) {
-                if (tab[i] == tab[j + 1]) {
+    public static int ileUnikalnych(int[] tab) {
+        int ile = 1;
+        int n = tab.length;
+        int j;
+        for (int i = 1; i < n; i++) {
+            for (j = 0; j < i; j++)
+                if (tab[i] == tab[j])
                     break;
-                }
-                if (j + 1 == tab.length - 1) {
-                    ile++;
-                }
-            }
+
+            if (i == j)
+                ile++;
         }
         return ile;
+    }
+
+    public static int sumaDodatnich(int[] tab) {
+        int suma = 0;
+        for (int j : tab) {
+            if (j > 0) {
+                suma += j;
+            }
+        }
+        return suma;
+    }
+
+    public static int sumaUjemnych(int[] tab) {
+        int suma = 0;
+        for (int j : tab) {
+            if (j < 0) {
+                suma += j;
+            }
+        }
+        return suma;
+    }
+
+    public static double sumaOdwrotnosci(int[] tab) {
+        double suma = 0;
+        for (int j : tab) {
+            suma += (double) 1 / j;
+        }
+        return suma;
+    }
+
+    public static float sredniaArytmetyczna(int[] tab) {
+        int suma = 0;
+        for (int j : tab) {
+                suma += j;
+        }
+        return (float) suma /tab.length;
+    }
+
+    public static double sredniaGeometryczna(int[] tab) {
+        double iloczyn = 1;
+        for (int j : tab) {
+            if (j < 0) { return 0.0; }
+            iloczyn *= j;
+        }
+        return Math.pow(iloczyn, 1.0/ tab.length);
+    }
+
+    public static double sredniaHarmoniczna (int[] tab) {
+        return (double) tab.length/sumaOdwrotnosci(tab);
     }
 }
