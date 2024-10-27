@@ -40,7 +40,6 @@ public class Zestaw5 {
         return mergedArray;
     }
 
-    // excess dodaj reszte a nie cała tablice
     public static ArrayList<Integer> merge(ArrayList<Integer> tab1, ArrayList<Integer> tab2) {
         ArrayList<Integer> mergedArray = new ArrayList<>();
         int i = 0, n1 = tab1.size(), n2 = tab2.size();
