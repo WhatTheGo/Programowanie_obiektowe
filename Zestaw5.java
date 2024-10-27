@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
@@ -7,7 +6,7 @@ public class Zestaw5 {
     public static void main(String[] args) {
         ArrayList<Integer> numbers1 = new ArrayList<>();
         numbers1.add(1);
-        numbers1.add(2);
+        numbers1.add(9);
         numbers1.add(3);
         ArrayList<Integer> numbers2 = new ArrayList<>();
         numbers2.add(4);
@@ -19,9 +18,15 @@ public class Zestaw5 {
         System.out.println(numbers_joined);
         System.out.println("Zad2");
         System.out.println(merge(numbers1, numbers2));
+        System.out.println("Zad3");
+        System.out.println(mergeSorted(numbers1, numbers2));
         System.out.println("Zad4");
         ArrayList<Integer> zad4Array = toArrayList("Hello World");
         System.out.println(zad4Array);
+        System.out.println("Zad5");
+        System.out.println(checkDigit(zad4Array, 5));
+        System.out.println("Zad6");
+        System.out.println(countDigit(zad4Array, 5));
         System.out.println("Zad7");
         System.out.println(uniqueArrayList(numbers_joined));
         System.out.println("Zad8");
@@ -29,31 +34,32 @@ public class Zestaw5 {
     }
 
     public static ArrayList<Integer> append(ArrayList<Integer> tab1, ArrayList<Integer> tab2) {
-        for (int i = 0; i < tab2.size(); i++) {
-            tab1.add(tab2.get(i));
-        }
-        return tab1;
+        ArrayList<Integer> mergedArray = new ArrayList<>();
+        mergedArray.addAll(tab1);
+        mergedArray.addAll(tab2);
+        return mergedArray;
     }
 
     // excess dodaj reszte a nie cała tablice
     public static ArrayList<Integer> merge(ArrayList<Integer> tab1, ArrayList<Integer> tab2) {
-        int n = 0;
-        ArrayList<Integer> excess = new ArrayList<>();
-        if (tab1.size() > tab2.size()) {
-            n = tab2.size();
-            excess = tab2;
-        }
-        else {
-            n = tab1.size();
-            excess = tab1;
-        }
         ArrayList<Integer> mergedArray = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        int i = 0, n1 = tab1.size(), n2 = tab2.size();
+
+        while (i < n1 && i < n2) {
             mergedArray.add(tab1.get(i));
             mergedArray.add(tab2.get(i));
+            i++;
         }
-
-        mergedArray.addAll(excess);
+        while (i < n1)
+        {
+            mergedArray.add(tab1.get(i));
+            i++;
+        }
+        while (i < n2)
+        {
+            mergedArray.add(tab2.get(i));
+            i++;
+        }
         return mergedArray;
     }
 
@@ -120,5 +126,34 @@ public class Zestaw5 {
 
         Collections.sort(arrayList);
         return arrayList;
+    }
+
+    public static ArrayList<Integer> mergeSorted(ArrayList<Integer> tab1, ArrayList<Integer> tab2) {
+        ArrayList<Integer> mergedArray = new ArrayList<>();
+        mergedArray.addAll(tab1);
+        mergedArray.addAll(tab2);
+        Collections.sort(mergedArray);
+        return mergedArray;
+    }
+
+    public static boolean checkDigit (ArrayList<Integer> tab, int cyfra)
+    {
+        for (Integer integer : tab) {
+            if (integer == cyfra) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int countDigit (ArrayList<Integer> tab, int cyfra)
+    {
+        int counter = 0;
+        for (Integer integer : tab) {
+            if (integer == cyfra) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
