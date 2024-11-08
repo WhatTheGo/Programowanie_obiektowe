@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-
 public class Kolokwium_1 {
     public static void main(String[] args) {
         System.out.println("Zad1");
         System.out.println(dokladnosc(5, 5.02, 2));
         System.out.println("Zad2");
-        System.out.println(najblizszySasiad(22.5));
+        System.out.println(najblizszySasiad(20));
         System.out.println("Zad3");
         System.out.println(pierwiastek(2, 2, 2));
 
