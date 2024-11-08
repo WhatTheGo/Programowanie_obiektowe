@@ -18,15 +18,25 @@ public class Kolokwium_1 {
         System.out.println("Zad6");
         System.out.println(czyPalindrom(12321));
         System.out.println("Zad7");
+        palindromLiczbowy(2);
     }
 
     public static void palindromLiczbowy(int m){
         int num1 = 1;
-        for(int i=0; i<m; i++){
+        for(int i=0; i<m-1; i++){
             num1 = num1*10;
         }
         int num2 = num1;
-        System.out.println(num2);
+        for (int x = num1; x<num1*10; x++){
+            for (int y = num2; y<num2*10; y++){
+                int wynik = x*y;
+                if (czyPalindrom(wynik)){
+                    System.out.println(x + " * " + y + " = " + wynik);
+                    return;
+                };
+            }
+        }
+        System.out.println("nie znaleziono");
     }
 
     public static int numberLength(int n) {
