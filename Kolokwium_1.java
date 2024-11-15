@@ -3,9 +3,9 @@ public class Kolokwium_1 {
         System.out.println("Zad1");
         System.out.println(dokladnosc(5, 5.02, 2));
         System.out.println("Zad2");
-        System.out.println(najblizszySasiad(20));
+        System.out.println(najblizszySasiad(48));
         System.out.println("Zad3");
-        System.out.println(pierwiastek(2, 2, 2));
+        System.out.println(pierwiastek(125, 3, 4));
 
         int[] tab1 = {4, 5, 8, 7, 6, 5, 9, 8, 7, 6, 5, 4, 3, 2, 1};
         System.out.println("Zad4");
@@ -122,16 +122,21 @@ public class Kolokwium_1 {
     }
 
     public static int najblizszySasiad(double S){
-        return (int) Math.sqrt(S);
+        int x = (int) Math.sqrt(S);
+        if(Math.abs(S-Math.pow(x,2)) > Math.abs((S-Math.pow(x+1, 2)))){
+            return x+1;
+        }
+        return x;
     }
 
     public static double pierwiastek(double S, int n, int k){
         double x = (double) najblizszySasiad(S);
-        double y = ((n-1)*x + (S/(Math.pow(x,n-1))))/n;
-        while (!dokladnosc(x, y, k)){
-            x = y;
-            y = ((n-1)*x + (S/(Math.pow(x,n-1))))/n;
+        double x_next = ((n-1)*x + (S/(Math.pow(x,n-1))))/n;
+
+        while (!dokladnosc(x, x_next, k)){
+            x = x_next;
+            x_next = ((n-1)*x + (S/(Math.pow(x,n-1))))/n;
         }
-        return y;
+        return x_next;
     }
 }
