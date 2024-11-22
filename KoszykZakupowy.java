@@ -39,11 +39,11 @@ public class KoszykZakupowy {
         }
     }
 
-    public void obliczCalkowitaWartosc() {
+    public double obliczCalkowitaWartosc() {
         double suma=0;
         for (Produkt produkt : listaZakupowa) {
             suma += produkt.cena;
         }
-        System.out.println("wartosc: " + suma);
+        return suma;
     }
 }

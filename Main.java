@@ -11,12 +11,22 @@ public class Main {
         koszyk.dodajProdukt(produkt);
         koszyk.dodajProdukt(produkt2);
         koszyk.wyswietlZawartoscKoszyka();
-        koszyk.obliczCalkowitaWartosc();
+        System.out.println("wartosc: " + koszyk.obliczCalkowitaWartosc());
 
         System.out.println("\nZamowienie\n");
         Zamowienie zamowienie = new Zamowienie(koszyk, "w drodze");
         zamowienie.wyswietlZamowienie();
 
-        
+        System.out.println("\nKlient\n");
+        Klient klient = new Klient("Bob", "Budowniczy");
+        klient.dodajZamowienie(zamowienie);
+        klient.wyswietlHistorieZamowien();
+        double koszt = klient.obliczLacznyKosztZamowien();
+        System.out.println(koszt);
+
+        System.out.println("\nSklep\n");
+        Sklep sklep = new Sklep(koszyk.uniqueElements);
+        sklep.dodajProdukt(produkt2);
+        sklep.wyswietlOferty();
     }
 }
