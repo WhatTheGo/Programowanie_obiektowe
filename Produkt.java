@@ -27,13 +27,15 @@ public class Produkt {
         this.iloscNaMagazynie += 1;
     }
 
-    public void usunZMagazynu(int n){
+    public boolean usunZMagazynu(int n){
         if (this.iloscNaMagazynie - n >= 0) {
             this.iloscNaMagazynie -= n;
         }
         else {
-            System.out.println("nie można usunąć więcej");
+            System.out.println("nie można usunąć");
+            return false;
         }
+        return true;
     }
     public void usunZMagazynu(){
         if (this.iloscNaMagazynie - 1 >= 0) {

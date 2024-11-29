@@ -16,14 +16,34 @@ public class KoszykZakupowy {
         this.uniqueElements = new ArrayList<>();
     }
 
-    public void dodajProdukt(Produkt produkt) {
+    public boolean dodajProdukt(Produkt produkt) {
         if (produkt.iloscNaMagazynie > 0){
             listaZakupowa.add(produkt);
             produkt.iloscNaMagazynie --;
         }
+        else{
+            return false;
+        }
         if (!uniqueElements.contains(produkt)) {
             uniqueElements.add(produkt);
         }
+        return true;
+    }
+
+    public boolean dodajProdukt(Produkt produkt, int x) {
+        if (produkt.iloscNaMagazynie >= x){
+            for (int i = 0; i < x; i++) {
+                listaZakupowa.add(produkt);
+            }
+            produkt.usunZMagazynu(x);
+        }
+        else{
+            return false;
+        }
+        if (!uniqueElements.contains(produkt)) {
+            uniqueElements.add(produkt);
+        }
+        return true;
     }
 
     public void wyswietlZawartoscKoszyka() {
@@ -45,5 +65,19 @@ public class KoszykZakupowy {
             suma += produkt.cena;
         }
         return suma;
+    }
+
+    public void usunProdukt(Produkt produkt, int x){
+        int i=1;
+        while (i<=x) {
+            if (listaZakupowa.contains(produkt)) {
+                listaZakupowa.remove(produkt);
+                i++;
+            }
+            else{
+                break;
+            }
+        }
+        produkt.dodajDoMagazynu(i);
     }
 }

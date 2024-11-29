@@ -15,7 +15,9 @@ public class Sklep {
             listaProduktow.add(produkt);
         }
         else {
-            System.out.println("Produkt juz znajduje się w magazynie!");
+            Produkt existingProdukt = this.wyszukajProdukt(produkt.nazwa);
+            int index = listaProduktow.indexOf(existingProdukt);
+            listaProduktow.get(index).dodajDoMagazynu(produkt.iloscNaMagazynie);
         }
     }
 
@@ -24,5 +26,19 @@ public class Sklep {
         for (Produkt produkt : listaProduktow) {
             System.out.println(produkt.nazwa + " " + produkt.iloscNaMagazynie);
         }
+    }
+
+    public Produkt wyszukajProdukt(String name){
+        for (Produkt produkt : listaProduktow) {
+            if (produkt.nazwa.equals(name)) {
+                return produkt;
+            }
+        }
+        System.out.println("Produkt nie znajduje się w magazynie");
+        return null;
+    }
+
+    public void zakupy(Produkt produkt, int x, KoszykZakupowy koszyk) {
+        koszyk.dodajProdukt(produkt, x);
     }
 }

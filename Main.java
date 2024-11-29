@@ -26,7 +26,15 @@ public class Main {
 
         System.out.println("\nSklep\n");
         Sklep sklep = new Sklep(koszyk.uniqueElements);
+        sklep.wyswietlOferty();
         sklep.dodajProdukt(produkt2);
         sklep.wyswietlOferty();
+        produkt2.wyswietlInformacje();
+        sklep.zakupy(produkt2, 8, koszyk);
+        sklep.wyswietlOferty();
+        System.out.println("\nProdukt\n");
+        produkt2.wyswietlInformacje();
+        System.out.println("\nKoszyk\n");
+        koszyk.wyswietlZawartoscKoszyka();
     }
 }
